@@ -2,6 +2,8 @@ import "./App.css";
 import { useEffect, useRef } from "react";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
+import SceneView from "@arcgis/core/views/SceneView";
+
 
 function App() {
   const mapRef = useRef(null);
@@ -13,10 +15,19 @@ function App() {
 
     const mapView = new MapView({
       map: map,
-      container: mapRef.current,
+      // container: mapRef.current,
       zoom: 13,
       center: [55, 25],
     });
+
+    const sceneView = new SceneView({
+      map: new Map({
+        basemap: "navigation-dark-3d",
+      }),
+      container: mapRef.current,
+    });
+
+    return () => mapView && mapView.destroy();
   }, []);
 
   return (
