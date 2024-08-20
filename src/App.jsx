@@ -11,6 +11,7 @@ import Polyline from "@arcgis/core/geometry/Polyline";
 // import ArcGISWebMap from "./components/ArcGISWebMap";
 // import ArcGISWebScene from "./components/ArcGISWebScene";
 
+
 const point = new Point({
   longitude: 55.2744,
   latitude: 25.1972,
@@ -37,6 +38,7 @@ const lineSymbol = new SimpleLineSymbol({
   color: [226, 119, 40],
   width: 4,
 });
+
 
 const polygon = {
   type: "polygon", // autocasts as new Polygon()
