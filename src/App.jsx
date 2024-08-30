@@ -1,3 +1,4 @@
+import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
 import "./App.css";
 import ArcGISGraphic from "./components/ArcGISGraphic";
 import ArcGISGraphicsLayer from "./components/ArcGISGraphicsLayer";
@@ -63,6 +64,7 @@ const fillSymbol = {
   },
 };
 
+
 function App() {
   return (
     <>
@@ -74,6 +76,7 @@ function App() {
           <ArcGISGraphic geometry={polygon} symbol={fillSymbol} />
         </ArcGISGraphicsLayer>
       </ArcGISMapView>
+      {/* <ArcGISSceneView /> */}
       {/* <ArcGISWebMap /> */}
       {/* <ArcGISWebScene /> */}
     </>
