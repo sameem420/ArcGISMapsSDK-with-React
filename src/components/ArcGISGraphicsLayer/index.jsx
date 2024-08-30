@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from "react";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+import { useEffect, useContext, useState } from "react";
 import { mapContext } from "../../contexts";
-import { graphicLayerContext } from "../../contexts";
+import { graphicsLayerContext } from "../../contexts";
 
 const ArcGISGraphicsLayer = ({ children }) => {
   const { view } = useContext(mapContext);
-
   const [_graphicsLayer, setGraphicsLayer] = useState(null);
 
   useEffect(() => {
@@ -17,7 +16,7 @@ const ArcGISGraphicsLayer = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (_graphicsLayer && view) {
+    if (_graphicsLayer) {
       view.map.add(_graphicsLayer);
     }
     return () => {};
@@ -26,9 +25,9 @@ const ArcGISGraphicsLayer = ({ children }) => {
   return (
     <>
       {_graphicsLayer && (
-        <graphicLayerContext.Provider value={{ _graphicsLayer }}>
+        <graphicsLayerContext.Provider value={{ _graphicsLayer }}>
           {children}
-        </graphicLayerContext.Provider>
+        </graphicsLayerContext.Provider>
       )}
     </>
   );

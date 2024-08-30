@@ -1,9 +1,9 @@
 import Graphic from "@arcgis/core/Graphic";
-import { useContext, useEffect, useState } from "react";
-import { graphicLayerContext } from "../../contexts";
+import { useEffect, useContext, useState } from "react";
+import { graphicsLayerContext } from "../../contexts";
 
 const ArcGISGraphic = ({ geometry, symbol }) => {
-  const { _graphicsLayer } = useContext(graphicLayerContext);
+  const { _graphicsLayer } = useContext(graphicsLayerContext);
   const [_graphic, setGraphic] = useState(null);
 
   useEffect(() => {
@@ -18,12 +18,10 @@ const ArcGISGraphic = ({ geometry, symbol }) => {
   }, []);
 
   useEffect(() => {
-    if (_graphic && _graphicsLayer) {
-      _graphicsLayer.add(_graphic);
-    }
+    _graphicsLayer.add(_graphic);
 
     return () => {};
-  }, [_graphicsLayer, _graphic]);
+  }, [_graphic, _graphicsLayer]);
 
   return <></>;
 };

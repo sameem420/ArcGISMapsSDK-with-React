@@ -1,44 +1,47 @@
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
 import "./App.css";
-import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
 import ArcGISGraphic from "./components/ArcGISGraphic";
 import ArcGISGraphicsLayer from "./components/ArcGISGraphicsLayer";
 import ArcGISMapView from "./components/ArcGISMapView";
-import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol";
-import Point from "@arcgis/core/geometry/Point";
-import Polyline from "@arcgis/core/geometry/Polyline";
 // import ArcGISSceneView from "./components/ArcGISSceneView";
 // import ArcGISWebMap from "./components/ArcGISWebMap";
 // import ArcGISWebScene from "./components/ArcGISWebScene";
+// import Color from "@arcgis/core/Color";
+// import Point from "@arcgis/core/geometry/Point";
+// import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol";
+// import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
 
+const point = {
+  type: "point", // autocasts as new Point()
+  longitude: -49.97,
+  latitude: 41.73,
+};
 
-const point = new Point({
-  longitude: 55.2744,
-  latitude: 25.1972,
-});
-
-const markerSymbol = new SimpleMarkerSymbol({
+const markerSymbol = {
+  type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
   color: [226, 119, 40],
   outline: {
+    // autocasts as new SimpleLineSymbol()
     color: [255, 255, 255],
     width: 2,
   },
-});
+};
 
-const polyline = new Polyline({
+const polyline = {
+  type: "polyline", // autocasts as new Polyline()
   paths: [
     [-111.3, 52.68],
     [-98, 49.5],
     [-93.94, 29.89],
   ],
-});
+};
 
-const lineSymbol = new SimpleLineSymbol({
-  // autocasts as SimpleLineSymbol()
+// Create a symbol for drawing the line
+const lineSymbol = {
+  type: "simple-line", // autocasts as SimpleLineSymbol()
   color: [226, 119, 40],
   width: 4,
-});
-
+};
 
 const polygon = {
   type: "polygon", // autocasts as new Polygon()
@@ -51,17 +54,21 @@ const polygon = {
 };
 
 // Create a symbol for rendering the graphic
-const fillSymbol = new SimpleFillSymbol({
+const fillSymbol = {
+  type: "simple-fill", // autocasts as new SimpleFillSymbol()
   color: [227, 139, 79, 0.8],
   outline: {
+    // autocasts as new SimpleLineSymbol()
     color: [255, 255, 255],
     width: 1,
   },
-});
+};
+
 
 function App() {
   return (
     <>
+      {/* <ArcGISSceneView /> */}
       <ArcGISMapView>
         <ArcGISGraphicsLayer>
           <ArcGISGraphic geometry={point} symbol={markerSymbol} />

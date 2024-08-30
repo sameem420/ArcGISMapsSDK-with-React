@@ -1,6 +1,8 @@
 import { createContext } from "react";
 
 const mapContext = createContext({});
-const graphicLayerContext = createContext({});
 
-export { mapContext, graphicLayerContext };
+const graphicsLayerContext = createContext({});
+
+export { mapContext, graphicsLayerContext };
+

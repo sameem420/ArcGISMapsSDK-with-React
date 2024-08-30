@@ -3,13 +3,13 @@ import MapView from "@arcgis/core/views/MapView";
 
 export const createMapView = (container) => {
   const map = new Map({
-    basemap: "osm",
+    basemap: "streets-navigation-vector",
   });
 
   return new MapView({
     map: map,
     container: container,
-    zoom: 13,
-    center: [55, 25],
+    zoom: 3,
+    center: [-64.78, 32.3],
   });
 };
