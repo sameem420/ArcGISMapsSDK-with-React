@@ -1,9 +1,9 @@
-import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
+import { useState } from "react";
 import "./App.css";
 import ArcGISGraphic from "./components/ArcGISGraphic";
 import ArcGISGraphicsLayer from "./components/ArcGISGraphicsLayer";
 import ArcGISMapView from "./components/ArcGISMapView";
-// import ArcGISSceneView from "./components/ArcGISSceneView";
+import ArcGISSceneView from "./components/ArcGISSceneView";
 // import ArcGISWebMap from "./components/ArcGISWebMap";
 // import ArcGISWebScene from "./components/ArcGISWebScene";
 // import Color from "@arcgis/core/Color";
@@ -64,19 +64,63 @@ const fillSymbol = {
   },
 };
 
-
 function App() {
+  const [mapView, setMapView] = useState(true);
+  const [sceneView, setSceneView] = useState(false);
+
   return (
     <>
-      {/* <ArcGISSceneView /> */}
-      <ArcGISMapView>
-        <ArcGISGraphicsLayer>
-          <ArcGISGraphic geometry={point} symbol={markerSymbol} />
-          <ArcGISGraphic geometry={polyline} symbol={lineSymbol} />
-          <ArcGISGraphic geometry={polygon} symbol={fillSymbol} />
-        </ArcGISGraphicsLayer>
-      </ArcGISMapView>
-      {/* <ArcGISSceneView /> */}
+      <button
+        onClick={() => {
+          setMapView(true);
+          setSceneView(false);
+        }}
+        className=""
+        style={{
+          backgroundColor: "#242424",
+          color: "white",
+          position: "absolute",
+          zIndex: 1,
+          top: "200px",
+          left: "15px",
+          width: "32px",
+          height: "32px",
+          border: 0,
+        }}
+      >
+        2D
+      </button>
+      <button
+        onClick={() => {
+          setMapView(false);
+          setSceneView(true);
+        }}
+        className=""
+        style={{
+          backgroundColor: "#242424",
+          color: "white",
+          position: "absolute",
+          zIndex: 1,
+          top: "235px",
+          left: "15px",
+          width: "32px",
+          height: "32px",
+          border: 0,
+        }}
+      >
+        3D
+      </button>
+      {mapView ? (
+        <ArcGISMapView>
+          <ArcGISGraphicsLayer>
+            <ArcGISGraphic geometry={point} symbol={markerSymbol} />
+            <ArcGISGraphic geometry={polyline} symbol={lineSymbol} />
+            <ArcGISGraphic geometry={polygon} symbol={fillSymbol} />
+          </ArcGISGraphicsLayer>
+        </ArcGISMapView>
+      ) : (
+        <ArcGISSceneView />
+      )}
       {/* <ArcGISWebMap /> */}
       {/* <ArcGISWebScene /> */}
     </>
@@ -84,3 +128,55 @@ function App() {
 }
 
 export default App;
+
+// <button
+//         onClick={() => {
+//           setSceneView(false);
+//           setMapView(true);
+//         }}
+//         className="esri-button"
+//         style={{
+//           backgroundColor: "#242424",
+//           color: "white",
+//           zIndex: 1,
+//           position: "absolute",
+//           border: 0,
+//           top: "200px",
+//           left: "15px",
+//           width: "32px",
+//           height: "32px",
+//         }}
+//       >
+//         2D
+//       </button>
+//       <button
+//         onClick={() => {
+//           setSceneView(true);
+//           setMapView(false);
+//         }}
+//         className="esri-button"
+//         style={{
+//           backgroundColor: "#242424",
+//           color: "white",
+//           zIndex: 1,
+//           position: "absolute",
+//           border: 0,
+//           top: "235px",
+//           left: "15px",
+//           width: "32px",
+//           height: "32px",
+//         }}
+//       >
+//         3D
+//       </button>
+//       {mapView == true ? (
+//         <ArcGISMapView>
+//           <ArcGISGraphicsLayer>
+//             <ArcGISGraphic geometry={point} symbol={markerSymbol} />
+//             <ArcGISGraphic geometry={polyline} symbol={lineSymbol} />
+//             <ArcGISGraphic geometry={polygon} symbol={fillSymbol} />
+//           </ArcGISGraphicsLayer>
+//         </ArcGISMapView>
+//       ) : (
+//         <ArcGISSceneView />
+//       )}

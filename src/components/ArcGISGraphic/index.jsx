@@ -13,7 +13,6 @@ const ArcGISGraphic = ({ geometry, symbol }) => {
     });
 
     setGraphic(graphic);
-
     return () => {};
   }, []);
 
